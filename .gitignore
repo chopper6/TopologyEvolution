@@ -1,5 +1,4 @@
 *.pyc
-data/output/*
-data/input/*
 *~
 *.log
+venv

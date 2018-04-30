@@ -1,0 +1,72 @@
+#files
+KP_solver_source         = /home/2014/choppe1/Documents/EvoNet/virt_workspace/lib/kp_solvers/minknap.c
+KP_solver_binary         = /home/2014/choppe1/Documents/EvoNet/virt_workspace/lib/kp_solvers/minknap.so
+output_directory         = /home/2014/choppe1/Documents/EvoNet/virt_workspace/data/output/111_bias/test_node5
+
+# general
+debug                   	= False
+directed			= False
+single_cc			= True 
+
+# knapsack
+pressure                	= 100
+tolerance			= 5
+advice_on           		= edges
+BD_criteria              	= both
+sampling_rounds_multiplier 	= .1
+sampling_rounds_max      	= None
+
+
+
+# start and stop
+initial_net_type        = random
+starting_size           = 8
+stop_condition 	       	= size
+ending_size             = 800
+max_generations         = N/A
+edge_to_node_ratio      = 2
+
+network_file  = /home/2014/choppe1/Documents/EvoNet/virt_workspace/data/output/108_lowDeg/rewire_attempt_contd/nets/1200
+
+
+# worker, master params
+num_output              = 10
+num_net_output          = 2
+num_instance_output     = 1
+
+number_of_workers       = 16
+num_worker_nets         = 1
+percent_survive         = 10
+
+
+# fitness
+leaf_metric             = RGAR
+leaf_operation          = sum
+leaf_power              = 2
+hub_metric              = ETB
+fitness_operation       = multiply
+fitness_direction       = max
+
+
+# bias
+biased                   = False
+bias_on                  = nodes
+global_edge_bias         = 0
+bias_distribution        = uniform
+
+
+# mutation
+add_edge_mutation_frequency     = 0
+remove_edge_mutation_frequency  = 0
+rewire_mutation_frequency       = 0
+sign_mutation_frequency         = 0
+reverse_edge_mutation_frequency = 0
+grow_mutation_frequency         = 1
+shrink_mutation_frequency       = 0
+
+
+# partially finished direct evolution (evolve 1 instance many times)
+num_sims              = 1
+advice_creation       = each
+
+
