@@ -6,3 +6,4 @@
 */data/output/*
 */venv
 *.xml
+.idea
