@@ -1,7 +1,7 @@
 #files
-KP_solver_source         = /home/2014/choppe1/Documents/EvoNet/virt_workspace/lib/kp_solvers/minknap.c
-KP_solver_binary         = /home/2014/choppe1/Documents/EvoNet/virt_workspace/lib/kp_solvers/minknap.so
-output_directory         = /home/2014/choppe1/Documents/EvoNet/virt_workspace/data/output/111_bias/test_node5
+KP_solver_source         = /home/2014/choppe1/Documents/TopologyEvolution/lib/kp_solvers/minknap.c
+KP_solver_binary         = /home/2014/choppe1/Documents/TopologyEvolution/lib/kp_solvers/minknap.so
+output_directory         = /home/2014/choppe1/Documents/TopologyEvolution/data/output/001/test
 
 # general
 debug                   	= False
