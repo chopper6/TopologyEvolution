@@ -2,4 +2,6 @@
 *~
 *.log
 data/*
+data/input/*
+data/output/*
 venv

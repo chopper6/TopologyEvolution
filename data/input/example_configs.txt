@@ -30,13 +30,13 @@ network_file  = /home/2014/choppe1/Documents/EvoNet/virt_workspace/data/output/1
 
 
 # worker, master params
-num_output              = 10
+num_output              = 20
 num_net_output          = 2
 num_instance_output     = 1
 
 number_of_workers       = 16
 num_worker_nets         = 1
-percent_survive         = 10
+percent_survive         = 20
 
 
 # fitness
