@@ -266,8 +266,10 @@ def degree_distrib_change(dirr):
     start_col = '#ff5050'
     end_col = '#0099cc'
 
-    plt.scatter(start_deg, start_freq, c=start_col, alpha=0.8, s=40, marker='o')
-    plt.scatter(end_deg, end_freq, c=end_col, alpha=0.8, s=40, marker='o')
+    plt.loglog(start_deg, start_freq, basex=10, basey=10, linestyle = '', c=start_col, alpha=0.8, markersize=7,
+ marker='o')
+    plt.loglog(end_deg, end_freq, basex=10, basey=10, linestyle='', c=start_col, alpha=0.8, markersize=7, marker='o')
+    #plt.scatter(end_deg, end_freq, c=end_col, alpha=0.8, s=40, marker='o')
 
     ax = matplotlib.pyplot.gca()
     ax.spines["top"].set_visible(False)
