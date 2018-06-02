@@ -1,8 +1,8 @@
 import math
-import reducer, solver, node_data, fitness, util
+import reducer, solver, fitness, util
 from ctypes import cdll
 
-def pressurize(configs, Net, instance_file_name, advice, BD_table):
+def pressurize(configs, Net, instance_file_name, advice):
     # configs:
     pressure = math.ceil((float(configs['pressure']) / 100.0))
     sampling_rounds_multiplier = float(configs['sampling_rounds_multiplier']) #FRACTION of curr number of EDGES
@@ -29,8 +29,7 @@ def pressurize(configs, Net, instance_file_name, advice, BD_table):
 
 
     leaf_fitness, hub_fitness, solo_fitness = 0, 0, 0
-    node_data.reset_fitness(net) #not actually used when kp = True
-    node_data.reset_BDs(net)
+    reset_BDs(net)
 
     kp_instances = reducer.reverse_reduction(net, pressure_relative, num_samples_relative, advice, configs)
 
@@ -48,4 +47,10 @@ def pressurize(configs, Net, instance_file_name, advice, BD_table):
     solo_fitness /= num_samples_relative
 
     Net.fitness, Net.leaf_fitness, Net.hub_fitness = solo_fitness, leaf_fitness, hub_fitness
+
+
+def reset_BDs(net):
+    for n in net.nodes():
+        net.node[n]['benefits'] = 0
+        net.node[n]['damages'] = 0
 

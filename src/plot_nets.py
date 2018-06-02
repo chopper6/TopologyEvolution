@@ -3,7 +3,6 @@ import matplotlib, os, sys, math
 matplotlib.use('Agg') # This must be done before importing matplotlib.pyplot
 import matplotlib.pyplot as plt, matplotlib.patches as mpatches
 import numpy as np, networkx as nx
-from decimal import Decimal
 import math, re, pickle
 
 
@@ -40,15 +39,18 @@ def plot_undir(output_dir, biased, bias_on):
         if not os.path.exists(output_dir + dirr):
             os.makedirs(output_dir + dirr)
 
-    for root, dirs, files in os.walk(output_dir + "/nets/"):
+    print('\nin plot_undir huurrr\n')
+    for root, dirs, files in os.walk(output_dir + "/nets_nx/"):
         for f in files:
-            #print("plot_dir(): file " + str(f))
+            print("plot_dir(): file " + str(f))
             undir_deg_distrib(root + "/" + f, output_dir + "/undirected_degree_distribution/", f, biased, bias_on)
 
 
 
 ################## IMAGE GENERATION FUNCTIONS ##################
 def undir_deg_distrib(net_file, destin_path, title, biased, bias_on):
+
+    print('\nIn plot_nets.undir_deg_distrib\n')
 
     if (re.match(re.compile("[a-zA-Z0-9]*pickle"), net_file)):
         with open(net_file, 'rb') as file:
@@ -110,7 +112,9 @@ def undir_deg_distrib(net_file, destin_path, title, biased, bias_on):
                 plt.scatter(degs, freqs, c = bias_colors, alpha=1, s=sizes, marker='D')
 
         else:
-            if (type == 'loglog' or type=='loglog%'): plt.loglog(degs, freqs, basex=10, basey=10, linestyle='',  linewidth=2, color = color_choice, alpha=1, markersize=8, marker='D', markeredgecolor='None')
+            if (type == 'loglog' or type=='loglog%'): 
+                plt.loglog(degs, freqs, basex=10, basey=10, linestyle='',  linewidth=2, color = color_choice, alpha=1, markersize=8, marker='D', markeredgecolor='None')
+                print('\nPlotting loglogs\n')
             elif (type == 'scatter' or type=='scatter%'):
                 sizes = [10 for i in range(len(degs))]
                 plt.scatter(degs, freqs, color = color_choice, alpha=1, s=sizes, marker='D')
@@ -149,6 +153,7 @@ def undir_deg_distrib(net_file, destin_path, title, biased, bias_on):
         plt.clf()
         plt.cla()
         plt.close()
+        print('\nExiting undir plots\n')
 
 
 
@@ -361,7 +366,7 @@ def features_over_time(dirr, net_info, titles, mins, maxs, use_lims):
             for y in ydata:
                 if (y==0): ydata2.append(0)
                 elif(y<0): ydata2.append(-100)
-                else: ydata2.append(Decimal(math.log(Decimal(y),10)))
+                else: ydata2.append(math.log(y,10))
             ydata = ydata2
             titles[i] += ' Log-Scaled'
 

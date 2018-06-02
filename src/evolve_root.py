@@ -17,16 +17,17 @@ def evolve(rank, num_workers, config_file):
 
     for i in range(num_sims):
 
-        init_sim(configs, num_sims, i, orig_output_dir)
+        err = init_sim(configs, num_sims, i, orig_output_dir)
+        #WARNING: this area might need more work, esp if mult isms
 
-        if rank == 0:  # MASTER
+        if rank == 0 and not err:  # MASTER
             log_text = 'Evolve_root(): in dir ' + str(os.getcwd()) + ', config file = ' + str(config_file) + ', num_workers = ' + str(num_workers) + "\n"
 
             import master
             util.cluster_print(configs['output_directory'], log_text)
             master.evolve_master(configs)
 
-        else: # WORKERS
+        elif not err: # WORKERS
             import minion
             minion.work(configs, rank)
 
@@ -40,7 +41,7 @@ def init_sim(configs, num_sims, sim_num, orig_output_dir):
 
             if (sim_num >= num_sims):
                 util.cluster_print(orig_output_dir, "All simulations already finished, exiting...\n")
-                return
+                return 1
 
             configs['output_directory'] = orig_output_dir + "_" + str(i)
             this_dir = True  # remains true if any of the following fail
@@ -60,6 +61,8 @@ def init_sim(configs, num_sims, sim_num, orig_output_dir):
         else:
             while (not os.path.exists(configs['output_directory'])):
                 sleep(1)
+
+    return 0
 
 
 def close_out_mult_sims(num_sims, orig_output_dir):

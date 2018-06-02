@@ -47,6 +47,7 @@ def final_master_info(population, gen, configs):
     nx.write_edgelist(population[0].net, output_dir+"/nets_nx/"+str(gen))
     pickle_file = output_dir + "/nets_pickled/" + str(gen)
     with open(pickle_file, 'wb') as file: pickle.dump(population[0].net, file)
+    deg_distrib_csv(output_dir, population, gen)
     popn_data(population, output_dir, gen)
     #draw_nets.basic(population, output_dir, total_gens)
 

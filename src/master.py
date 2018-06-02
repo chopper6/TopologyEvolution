@@ -1,7 +1,7 @@
 import os, pickle, time, shutil, sys
 from random import SystemRandom as sysRand
 from time import sleep
-import fitness, minion, output, plot_nets, init_nets, pressurize, util, init, probabilistic_entropy, bias
+import fitness, minion, output, plot_nets, init_nets, pressurize, util, init, bias
 
 
 #MASTER EVOLUTION
@@ -14,7 +14,10 @@ def evolve_master(configs):
     biased = util.boool(configs['biased'])
     num_sims = int(configs['num_sims'])
 
-    population, gen, size, advice, BD_table, num_survive, keep_running = init_run(configs)
+    run_data = init_run(configs)
+    if not run_data: return #for ex if run already finished
+
+    population, gen, size, advice, BD_table, num_survive, keep_running = run_data
 
     while keep_running:
         t_start = time.time()
@@ -74,9 +77,9 @@ def init_run(configs):
 
         if (gen == 'Done'):
             util.cluster_print(output_dir, "Run already finished, exiting...\n")
-            return
+            return #here need another way to exit, otherwise returns wrong number of args, or package args in one doc
 
-        elif (gen and gen!=0 and gen!=1 and gen!=2): #IS CONTINUATION RUN
+        elif (int(gen) > 2): #IS CONTINUATION RUN
             gen = int(gen)-2 #latest may not have finished
             population = parse_worker_popn(num_workers, gen, output_dir, num_survive, fitness_direction)
             size = len(population[0].net.nodes())
@@ -92,13 +95,8 @@ def init_run(configs):
 
         population = init_nets.init_population(init_type, start_size, pop_size, configs)
         advice = init.build_advice(population[0].net, configs)
-        if (configs['edge_state'] == 'probabilistic' and (util.boool(configs['use_knapsack']) == False)):
-            BD_table = probabilistic_entropy.build_BD_table(configs)
-        else:
-            BD_table = None
-
         #init fitness eval
-        pressurize.pressurize(configs, population[0],instance_file + "Xitern0.csv", advice, BD_table)
+        pressurize.pressurize(configs, population[0],instance_file + "Xitern0.csv", advice)
 
         gen, size = 0, start_size
         keep_running = util.test_stop_condition(size, gen, configs)
