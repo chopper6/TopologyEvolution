@@ -1,7 +1,7 @@
 #files
 KP_solver_source         = /home/2014/choppe1/Documents/TopologyEvolution/lib/kp_solvers/minknap.c
 KP_solver_binary         = /home/2014/choppe1/Documents/TopologyEvolution/lib/kp_solvers/minknap.so
-output_directory         = /home/2014/choppe1/Documents/TopologyEvolution/data/output/001/test
+output_directory         = /home/2014/choppe1/Documents/TopologyEvolution/data/output/001/test_longer
 
 # general
 debug                   	= False
@@ -11,7 +11,7 @@ single_cc			= True
 # knapsack
 pressure                	= 100
 tolerance			= 5
-advice_on           		= edges
+advice_upon           		= edges
 BD_criteria              	= both
 sampling_rounds_multiplier 	= .1
 sampling_rounds_max      	= None
@@ -23,14 +23,14 @@ initial_net_type        = random
 starting_size           = 8
 stop_condition 	       	= size
 ending_size             = 800
-max_generations         = N/A
+max_generations         = 0
 edge_to_node_ratio      = 2
 
 network_file  = /home/2014/choppe1/Documents/EvoNet/virt_workspace/data/output/108_lowDeg/rewire_attempt_contd/nets/1200
 
 
 # worker, master params
-num_output              = 20
+num_data_output         = 20
 num_net_output          = 2
 num_instance_output     = 1
 

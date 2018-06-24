@@ -39,18 +39,14 @@ def plot_undir(output_dir, biased, bias_on):
         if not os.path.exists(output_dir + dirr):
             os.makedirs(output_dir + dirr)
 
-    print('\nin plot_undir huurrr\n')
     for root, dirs, files in os.walk(output_dir + "/nets_nx/"):
         for f in files:
-            print("plot_dir(): file " + str(f))
             undir_deg_distrib(root + "/" + f, output_dir + "/undirected_degree_distribution/", f, biased, bias_on)
 
 
 
 ################## IMAGE GENERATION FUNCTIONS ##################
 def undir_deg_distrib(net_file, destin_path, title, biased, bias_on):
-
-    print('\nIn plot_nets.undir_deg_distrib\n')
 
     if (re.match(re.compile("[a-zA-Z0-9]*pickle"), net_file)):
         with open(net_file, 'rb') as file:
@@ -114,7 +110,6 @@ def undir_deg_distrib(net_file, destin_path, title, biased, bias_on):
         else:
             if (type == 'loglog' or type=='loglog%'): 
                 plt.loglog(degs, freqs, basex=10, basey=10, linestyle='',  linewidth=2, color = color_choice, alpha=1, markersize=8, marker='D', markeredgecolor='None')
-                print('\nPlotting loglogs\n')
             elif (type == 'scatter' or type=='scatter%'):
                 sizes = [10 for i in range(len(degs))]
                 plt.scatter(degs, freqs, color = color_choice, alpha=1, s=sizes, marker='D')
@@ -153,7 +148,6 @@ def undir_deg_distrib(net_file, destin_path, title, biased, bias_on):
         plt.clf()
         plt.cla()
         plt.close()
-        print('\nExiting undir plots\n')
 
 
 
@@ -266,18 +260,17 @@ def degree_distrib_change(dirr):
     start_col = '#ff5050'
     end_col = '#0099cc'
 
-    plt.loglog(start_deg, start_freq, basex=10, basey=10, linestyle = '', c=start_col, alpha=0.8, markersize=7,
- marker='o')
-    plt.loglog(end_deg, end_freq, basex=10, basey=10, linestyle='', c=start_col, alpha=0.8, markersize=7, marker='o')
+    plt.loglog(start_deg, start_freq, basex=10, basey=10, linestyle = '', c=start_col, alpha=0.8, markersize=7, marker='o')
+    plt.loglog(end_deg, end_freq, basex=10, basey=10, linestyle='', c=end_col, alpha=0.8, markersize=7, marker='o')
     #plt.scatter(end_deg, end_freq, c=end_col, alpha=0.8, s=40, marker='o')
 
     ax = matplotlib.pyplot.gca()
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
-    ax.set_xlim([1,16])
-    ax.set_ylim([1,200])
-    ax.set_yticks([0,50,100,150,200])
-    ax.set_xticks([0,2,4,6,8,10,12,14,16])
+    ax.set_xlim([1,1000])
+    ax.set_ylim([1,1000])
+    #ax.set_yticks([0,50,100,150,200])
+    #ax.set_xticks([0,2,4,6,8,10,12,14,16])
 
     plt.tick_params(  # http://matplotlib.org/api/axes_api.html#matplotlib.axes.Axes.tick_params
         axis='both',  # changes apply to the x-axis

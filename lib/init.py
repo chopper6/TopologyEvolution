@@ -22,7 +22,7 @@ def load_sim_configs (param_file, rank, num_workers):
 
 
     if (configs['stop_condition'] == 'size'):
-        assert(configs['grow_mutation_frequency'] > 0)
+        assert(int(configs['grow_mutation_frequency']) > 0)
     #kp_only, stamp may need work
     configs['instance_file'] = (util.slash(configs['output_directory'])) + "instances/" # + configs['stamp']) #TODO: 'stamp' needs to be redone is wanted
 
@@ -36,7 +36,7 @@ def load_sim_configs (param_file, rank, num_workers):
                 time.sleep(5)
                 continue
 
-        if (configs['number_of_workers'] != num_workers): util.cluster_print(configs['output_directory'],"\nWARNING in init.load_sim_configs(): mpi #workers != config #workers! " + str(configs['number_of_workers']) + " vs " + str(num_workers) + "\n")  # not sure why this doesn't correctly get # config workers...
+        if (int(configs['number_of_workers']) != num_workers): util.cluster_print(configs['output_directory'],"\nWARNING in init.load_sim_configs(): mpi #workers != config #workers! " + str(configs['number_of_workers']) + " vs " + str(num_workers) + "\n")  # not sure why this doesn't correctly get # config workers...
 
     return configs
 #--------------------------------------------------------------------------------------------------  
