@@ -108,7 +108,7 @@ def init_dirs(num_workers, output_dir):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    dirs = ["/instances/", "/nets_nx/", "/bias/", "/nets_pickled/", "/to_workers/", "/to_master/", "/pickle_nets/"]
+    dirs = ["/instances/", "/nets_nx/", "/bias/", "/nets_pickled/", "/to_workers/", "/to_master/"]
     for dirr in dirs:
         if not os.path.exists(output_dir + dirr):
             os.makedirs(output_dir+dirr)
