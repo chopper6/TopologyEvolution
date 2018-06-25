@@ -1,6 +1,6 @@
 topologyEvolution is a project to evolve a population of networks to minimize the difficulty of NP-Hard instances
 
-note that some features have not been tested for awhile, these are marked by (!)
+note that some features have not been tested for awhile, these are marked by (!) in the parameter details below
 in less elegant cases, asserts may be used to ensure that certain parameter combos are not used (since not yet implemented)
 
 
@@ -8,6 +8,9 @@ OTHER DETAILS
 - workers only execute 1 generation and have a static population size
 - note that if stop_condition = size, must include a grow_frequency mutation > 0 
 - instances.py is very outdated. If you want to record data on knapsack instances it will need to be reworked
+
+- running on compute canada clusters such as guillimin: look into launchers, launcher.py calls roots/batch, which call roots/evolve_guillimin
+- running on rupert: use run_rupert.sh which calls roots/evolve_rupert. Note that one config file can be used at a time on rupert
 
 
 PARAMETER DETAILS

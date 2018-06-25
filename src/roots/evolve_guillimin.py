@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import os,sys,csv,shutil
 from mpi4py import MPI
-#os.environ['lib'] = '/home/2014/choppe1/Documents/TopologyEvolution/lib' #NOTE: needed only for yamaska/rupert
 sys.path.insert(0, os.getenv('TOPEVO_lib'))
 import init, util, plot_nets
 import numpy as np
@@ -110,15 +109,3 @@ def extract_and_combine(output_dir, num_sims):
         for row in mean_data:
             file.writerow(row)
 
-if __name__ == "__main__":
-    # note that yamaska and rupert should call this directly
-    comm = MPI.COMM_WORLD
-    rank = comm.Get_rank()
-    num_workers = comm.Get_size()-1  # master not incld
-    config_file = sys.argv[1]
-
-    evolve(rank, num_workers, config_file)
-
-    if (rank==0):
-        comm.Abort()
-        print("\nExiting Evolution.\n")
