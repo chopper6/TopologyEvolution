@@ -18,7 +18,7 @@ def evolve(rank, num_workers, config_file):
 
     for i in range(num_sims):
 
-        err = init_sim(configs, num_sims, i, orig_output_dir)
+        err = init_sim(configs, num_sims, i, orig_output_dir, rank)
         #WARNING: this area might need more work, esp if mult isms
 
         if rank == 0 and not err:  # MASTER
@@ -35,7 +35,7 @@ def evolve(rank, num_workers, config_file):
     if (num_sims > 1 and rank==0): close_out_mult_sims(num_sims, orig_output_dir)
 
 
-def init_sim(configs, num_sims, sim_num, orig_output_dir):
+def init_sim(configs, num_sims, sim_num, orig_output_dir, rank):
     if (num_sims > 1 and sim_num == 0):  # check where to pick up the run
         this_dir = False
         curr_dir=0
