@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import os,sys,csv,shutil
 from mpi4py import MPI
-os.environ['lib'] = '/home/2014/choppe1/Documents/TopologyEvolution/lib' #NOTE: needed only for yamaska/rupert
-sys.path.insert(0, os.getenv('lib'))
+#os.environ['lib'] = '/home/2014/choppe1/Documents/TopologyEvolution/lib' #NOTE: needed only for yamaska/rupert
+sys.path.insert(0, os.getenv('TOPEVO_lib'))
 import init, util, plot_nets
 import numpy as np
 from time import sleep
@@ -12,6 +12,7 @@ from time import sleep
 def evolve(rank, num_workers, config_file):
 
     configs = init.load_sim_configs(config_file, rank, num_workers)
+    util.cluster_print(configs['output_directory'], "Thread #" + str(rank) + " starting...")
     orig_output_dir = configs['output_directory']
     num_sims = int(configs['num_sims'])
 
