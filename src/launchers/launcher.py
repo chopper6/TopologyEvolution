@@ -1,5 +1,5 @@
 import os, sys, subprocess, time, socket
-sys.path.insert(0, os.getenv('lib'))
+sys.path.insert(0, os.getenv('TOPEVO_lib'))
 import init, util
 ################################################################################################################################################
 def compile_solvers(CONFIGS):
@@ -56,21 +56,21 @@ def parseConfigs(input_file):
     return CONFIGS
 ################################################################################################################################################
 def launch(simulation_script, simulation_batch_root, launching_script, simulation_directory,launching_directory,input_file, qsub_simulation_arg, qsub_launching_arg, dependency_switch, log):
-    os.environ['SIMULATION_SCRIPT']    = simulation_script
-    os.environ['SIMULATION_BATCH_ROOT']= simulation_batch_root
-    os.environ['LAUNCHING_SCRIPT']     = launching_script
-    os.environ['SIMULATION_DIRECTORY'] = simulation_directory
-    os.environ['LAUNCHING_DIRECTORY']  = launching_directory
-    os.environ['SIMULATION_CONFIGS']   = input_file
-    log.write("\nos.environ['SIMULATION_SCRIPT']   = "+os.getenv('SIMULATION_SCRIPT'))
-    log.write("\nos.environ['SIMULATION_BATCH_ROOT']   = "+os.getenv('SIMULATION_BATCH_ROOT'))
-    log.write("\nos.environ['LAUNCHING_SCRIPT']    = "+os.getenv('LAUNCHING_SCRIPT'))
-    log.write("\nos.environ['SIMULATION_DIRECTORY']= "+os.getenv('SIMULATION_DIRECTORY'))
-    log.write("\nos.environ['LAUNCHING_DIRECTORY'] = "+os.getenv('LAUNCHING_DIRECTORY'))
-    log.write("\nos.environ['SIMULATION_CONFIGS']  = "+os.getenv('SIMULATION_CONFIGS'))
+    os.environ['TOPEVO_SIMULATION_SCRIPT']    = simulation_script
+    os.environ['TOPEVO_SIMULATION_BATCH_ROOT']= simulation_batch_root
+    os.environ['TOPEVO_LAUNCHING_SCRIPT']     = launching_script
+    os.environ['TOPEVO_SIMULATION_DIRECTORY'] = simulation_directory
+    os.environ['TOPEVO_LAUNCHING_DIRECTORY']  = launching_directory
+    os.environ['TOPEVO_SIMULATION_CONFIGS']   = input_file
+    log.write("\nos.environ['TOPEVO_SIMULATION_SCRIPT']   = "+os.getenv('TOPEVO_SIMULATION_SCRIPT'))
+    log.write("\nos.environ['TOPEVO_SIMULATION_BATCH_ROOT']   = "+os.getenv('TOPEVO_SIMULATION_BATCH_ROOT'))
+    log.write("\nos.environ['TOPEVO_LAUNCHING_SCRIPT']    = "+os.getenv('TOPEVO_LAUNCHING_SCRIPT'))
+    log.write("\nos.environ['TOPEVO_SIMULATION_DIRECTORY']= "+os.getenv('TOPEVO_SIMULATION_DIRECTORY'))
+    log.write("\nos.environ['TOPEVO_LAUNCHING_DIRECTORY'] = "+os.getenv('TOPEVO_LAUNCHING_DIRECTORY'))
+    log.write("\nos.environ['TOPEVO_SIMULATION_CONFIGS']  = "+os.getenv('TOPEVO_SIMULATION_CONFIGS'))
     log.write("\nPATH  = "+os.getenv('PATH'))
     log.write("\nLD_LIBRARY_PATH  = "+os.getenv('LD_LIBRARY_PATH'))
-    print("os.environ['SIMULATION_CONFIGS']  = "+os.getenv('SIMULATION_CONFIGS'))
+    print("os.environ['TOPEVO_SIMULATION_CONFIGS']  = "+os.getenv('TOPEVO_SIMULATION_CONFIGS'))
     print ("Please wait ..")    
     simulation_job_id   = (subprocess.Popen (qsub_simulation_arg, stdout=subprocess.PIPE, universal_newlines=True)).stdout.read().replace('\n','').strip()
     log.write ("\nSimulation job dispatched .. "+simulation_job_id+"\nI will wait 1 minute before dispatching the Launching job, Please wait ...")
@@ -117,7 +117,7 @@ def setup_qsub_command():
 def setup ():
     timestamp   = time.strftime("%B-%d-%Y-h%Hm%Ms%S")
     
-    log = open (os.path.join (util.slash(os.getenv('LAUNCHING_DIRECTORY')), "launcher_batch.log" ), "a") 
+    log = open (os.path.join (util.slash(os.getenv('TOPEVO_LAUNCHING_DIRECTORY')), "launcher_batch.log" ), "a") 
     if len(sys.argv) < 2 or not  (os.path.isfile (str(sys.argv[1])))  :
         log.write ("Usage: python3 launcher_vX.py [/absolute/path/to/input/file.txt (containing paths to configs files)]\nExiting..\n")
         sys.exit(1)  
@@ -146,13 +146,13 @@ if __name__ == "__main__":
     
     sim_script, launch_script, sub_cmd, dependency_switch, host = setup_qsub_command()
     
-    qsub_simulation_arg         = [sub_cmd, "-N", job_name,  "-o",  qsub_output_dir+"qsub_simulation_output_"+host+'_'+job_name+'_'+timestamp+".txt", "-e",  qsub_output_dir+"qsub_simulation_error_"+host+'_'+job_name+'_'+timestamp+".txt", "-V", util.slash(os.getenv('LAUNCHING_DIRECTORY'))+sim_script]
-    qsub_launching_arg          = [sub_cmd,  "-N", job_name,  "-o",  qsub_output_dir+"qsub_launching_output_"+host+'_'+job_name+'_'+timestamp+".txt", "-e",  qsub_output_dir+"qsub_launching_error_"+host+'_'+job_name+'_'+timestamp+".txt",  "-V", util.slash(os.getenv('LAUNCHING_DIRECTORY'))+launch_script]
-    simulation_batch_root       = os.getenv('SIMULATION_BATCH_ROOT') 
-    simulation_script           = os.getenv('SIMULATION_SCRIPT')
-    launching_script            = os.getenv('LAUNCHING_SCRIPT') 
-    simulation_directory        = os.getenv('SIMULATION_DIRECTORY') 
-    launching_directory         = os.getenv('LAUNCHING_DIRECTORY')   
+    qsub_simulation_arg         = [sub_cmd, "-N", job_name,  "-o",  qsub_output_dir+"qsub_simulation_output_"+host+'_'+job_name+'_'+timestamp+".txt", "-e",  qsub_output_dir+"qsub_simulation_error_"+host+'_'+job_name+'_'+timestamp+".txt", "-V", util.slash(os.getenv('TOPEVO_LAUNCHING_DIRECTORY'))+sim_script]
+    qsub_launching_arg          = [sub_cmd,  "-N", job_name,  "-o",  qsub_output_dir+"qsub_launching_output_"+host+'_'+job_name+'_'+timestamp+".txt", "-e",  qsub_output_dir+"qsub_launching_error_"+host+'_'+job_name+'_'+timestamp+".txt",  "-V", util.slash(os.getenv('TOPEVO_LAUNCHING_DIRECTORY'))+launch_script]
+    simulation_batch_root       = os.getenv('TOPEVO_SIMULATION_BATCH_ROOT') 
+    simulation_script           = os.getenv('TOPEVO_SIMULATION_SCRIPT')
+    launching_script            = os.getenv('TOPEVO_LAUNCHING_SCRIPT') 
+    simulation_directory        = os.getenv('TOPEVO_SIMULATION_DIRECTORY') 
+    launching_directory         = os.getenv('TOPEVO_LAUNCHING_DIRECTORY')   
     
 
     launch (simulation_script, simulation_batch_root, launching_script,simulation_directory,launching_directory, input_file, qsub_simulation_arg, qsub_launching_arg, dependency_switch, log)
