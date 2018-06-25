@@ -24,7 +24,6 @@ def master_info(population, gen, size, pop_size, num_survive, advice, BD_table, 
         if (gen % int(end / num_data_output) == 0):
             popn_data(population, output_dir, gen)
             util.cluster_print(output_dir, "Master at gen " + str(gen) + ", with net size = " + str(size) + " nodes and " + str(len(population[0].net.edges())) + " edges, " + str(num_survive) + "<=" + str(len(population)) + " survive out of " + str(pop_size))
-            nx.write_edgelist(population[0].net, output_dir + "/fittest_net.edgelist")
 
     if (num_instance_output != 0):
         if (gen % int(end / num_instance_output) == 0):
