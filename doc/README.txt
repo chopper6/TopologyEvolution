@@ -4,6 +4,7 @@ TO RUN IT
 - make a config file, such as example_configs.txt and place it in data/input
 - install package requirements, see rqmts.txt, which can also be used directly for a virtualenv
 - running on compute canada clusters such as guillimin: look into launchers, launcher.py calls roots/batch, which call roots/evolve_guillimin
+- guillimin also requires some env variables to be set, see ex_bashrc_guillimin.txt for reference
 - running on rupert: use run_rupert.sh which calls roots/evolve_rupert. Note that one config file can be used at a time on rupert
 
 
