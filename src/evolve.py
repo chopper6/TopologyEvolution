@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 import os,sys,csv,shutil
 from mpi4py import MPI
-os.environ['lib'] = '/home/2014/choppe1/Documents/TopologyEvolution/lib'
-sys.path.insert(0, os.getenv('lib'))
 import init, util, plot_nets
 import numpy as np
 from time import sleep
@@ -114,6 +112,7 @@ def extract_and_combine(output_dir, num_sims):
 
 if __name__ == "__main__":
     # note that yamaska and rupert should call this directly
+    # guillimin calls through batch_root.py
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
     num_workers = comm.Get_size()-1  # master not incld
