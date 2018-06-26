@@ -1,6 +1,4 @@
 import sys,os,subprocess,time
-sys.path.insert(0, os.getenv('TOPEVO_lib'))
-
 size, input_file = None,None
 try:
     size, input_file = int(sys.argv[1].strip()), sys.argv[2]
