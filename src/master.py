@@ -231,8 +231,6 @@ def curr_gen_params(size, prev_num_survive, configs):
     worker_pop_size = int(configs['num_worker_nets'])
 
     pop_size = worker_pop_size * num_workers
-    if (configs['debug']): pop_size = 1
-
     num_survive = int(pop_size * survive_fraction)
     if (num_survive < 1):  num_survive = 1
     if (prev_num_survive):
