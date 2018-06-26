@@ -45,9 +45,9 @@ initial_net_type        = random | load; load uses network_file parameter
 		 	  other options available, but have not been used for awhile see init_nets.py
 starting_size           = #nodes
 stop_condition		= generation | size; determines which of the following configs are relevant
-ending_size             = if stop_condition == size; counts in #nodes
-max_generations         = if stop_condition == generation
-edge_to_node_ratio      = mutations will conserve this ratio
+ending_size             = #nodes; if stop_condition == siz
+max_generations         = #generations; if stop_condition == generation
+edge_to_node_ratio      = double; mutations will conserve this ratio
 
 network_file  = /path/to/previous/output/directory/nets_nx/ (use networkx generated version not pickled nets)
 
@@ -60,7 +60,7 @@ percent_survive         percent of total population (num_workers*num_worker_nets
 num_data_output     	comprised of degree distribution and several features
 num_net_output        	full net is output, can be used for 'load'
 
-# fitness
+# fitness, displayed metrics are what have been used for past papers
 leaf_metric             = RGAR; can add other options if desired
 leaf_power              = 2; leaf_metric is exponentially weighted relative to hub_metric
 hub_metric              = ETB; can also use control|Bin, the later is along the lines of direct (first-order) evolution
