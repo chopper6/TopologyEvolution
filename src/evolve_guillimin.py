@@ -109,3 +109,18 @@ def extract_and_combine(output_dir, num_sims):
         for row in mean_data:
             file.writerow(row)
 
+
+if __name__ == "__main__":
+    # note that yamaska and rupert should call this directly
+    # guillimin calls through roots/batch.py
+    comm = MPI.COMM_WORLD
+    rank = comm.Get_rank()
+    num_workers = comm.Get_size()-1  # master not incld
+    config_file = sys.argv[1]
+
+    evolve(rank, num_workers, config_file)
+
+    if (rank==0):
+        comm.Abort()
+        print("\nExiting Evolution.\n")
+
