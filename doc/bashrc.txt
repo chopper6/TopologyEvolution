@@ -1,0 +1,26 @@
+alias python='python3 -B'
+alias python3='python3 -B'
+export PYTHONDONTWRITEBYTECODE='do not produce __pycach__ garbage'
+export PATH=$PYDIR/bin:$PATH
+export LD_LIBRARY_PATH=$PYDIR/lib:$LD_LIBRARY_PATH
+
+
+export scratch=$SCRATCH
+export TOPEVO_lib=$HOME/TopologyEvolution/lib
+export TOPEVO_SOLVERS_DIRECTORY=TopologyEvolution/$lib/kp_solvers
+export TOPEVO_SIMULATION_BATCH_ROOT=$HOME/TopologyEvolution/src/roots/batch.py
+export TOPEVO_SIMULATION_SCRIPT=$HOME/TopologyEvolution/src/roots/evolve_guillimin.py
+export TOPEVO_LAUNCHING_SCRIPT=$HOME/TopologyEvolution/src/launchers/launcher.py
+export TOPEVO_SIMULATION_DIRECTORY=$HOME/TopologyEvolution/src/roots/
+export TOPEVO_LAUNCHING_DIRECTORY=$HOME/TopologyEvolution/src/launchers/
+
+
+export EVOEVO_SIMULATION_BATCH_ROOT=$HOME/evoEvo/src/roots/batch.py
+export EVOEVO_SIMULATION_SCRIPT=$HOME/evoEvo/src/roots/evolve.py
+export EVOEVO_LAUNCHING_SCRIPT=$HOME/evoEvo/src/launchers/launcher.py
+export EVOEVO_SIMULATION_DIRECTORY=$HOME/evoEvo/src/roots
+export EVOEVO_LAUNCHING_DIRECTORY=$HOME/evoEvo/src/launchers/
+
+alias ls='ls -l'
+alias vim='vim -p'
+alias ldir='cd $HOME/src/launchers/'
