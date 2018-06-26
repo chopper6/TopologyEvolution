@@ -2,9 +2,7 @@
 import os,sys,csv,shutil
 from mpi4py import MPI
 os.environ['lib'] = '/home/2014/choppe1/Documents/TopologyEvolution/lib'
-os.environ['src'] = '/home/2014/choppe1/Documents/TopologyEvolution/src'
 sys.path.insert(0, os.getenv('lib'))
-sys.path.insert(0, os.getenv('src'))
 import init, util, plot_nets
 import numpy as np
 from time import sleep
