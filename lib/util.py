@@ -75,6 +75,8 @@ def single_advice(M, element, configs):
 #--------------------------------------------------------------------------------------------------
 
 def cluster_print(output_dir, text):
+    print_file = output_dir + "/thread_out.txt"
+    print_file = print_file.replace('//','/')
     with open(output_dir + "/thread_out.txt", 'a') as file:
         file.write(str(text) + "\n")
         file.flush()
