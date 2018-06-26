@@ -36,7 +36,7 @@ def load_sim_configs (param_file, rank, num_workers):
                 time.sleep(5)
                 continue
 
-        if (int(configs['number_of_workers']) != int(num_workers)): util.cluster_print(configs['output_directory'],"\nWARNING in init.load_sim_configs(): mpi #workers != config #workers! " + str(configs['number_of_workers']) + " vs " + str(num_workers) + "\n")  # not sure why this doesn't correctly get # config workers...
+        if (int(configs['number_of_workers']) != int(num_workers) and not configs['debug']): util.cluster_print(configs['output_directory'],"\nWARNING in init.load_sim_configs(): mpi #workers != config #workers! " + str(configs['number_of_workers']) + " vs " + str(num_workers) + "\n")  # not sure why this doesn't correctly get # config workers...
 
     return configs
 #--------------------------------------------------------------------------------------------------  
