@@ -1,4 +1,5 @@
 import os, sys, subprocess, time, socket
+sys.path.insert(0, os.getenv('TOPEVO_SIMULATION_DIRECTORY'))
 import init, util
 ################################################################################################################################################
 def compile_solvers(CONFIGS):
