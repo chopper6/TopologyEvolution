@@ -12,6 +12,7 @@ SOME DETAILS
 - workers only execute 1 generation and have a static population size
 - note that if stop_condition = size, must include a grow_frequency mutation > 0 
 - instances.py is very outdated. If you want to record data on knapsack instances it will need to be reworked
+- the 'bench' directory has incomplete code that may be useful for future modifications
 
 
 

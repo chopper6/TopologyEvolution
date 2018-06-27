@@ -1,5 +1,4 @@
 import os, sys, subprocess, time, socket
-sys.path.insert(0, os.getenv('TOPEVO_lib'))
 import init, util
 ################################################################################################################################################
 def compile_solvers(CONFIGS):

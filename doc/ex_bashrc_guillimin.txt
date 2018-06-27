@@ -5,12 +5,11 @@ export PATH=$PYDIR/bin:$PATH
 export LD_LIBRARY_PATH=$PYDIR/lib:$LD_LIBRARY_PATH
 
 export scratch=$SCRATCH
-export TOPEVO_lib=$HOME/TopologyEvolution/lib
 export TOPEVO_SOLVERS_DIRECTORY=TopologyEvolution/$lib/kp_solvers
-export TOPEVO_SIMULATION_BATCH_ROOT=$HOME/TopologyEvolution/src/roots/batch.py
-export TOPEVO_SIMULATION_SCRIPT=$HOME/TopologyEvolution/src/evolve_guillimin.py
+export TOPEVO_SIMULATION_BATCH_ROOT=$HOME/TopologyEvolution/src/batch_root.py
+export TOPEVO_SIMULATION_SCRIPT=$HOME/TopologyEvolution/src/evolve.py
 export TOPEVO_LAUNCHING_SCRIPT=$HOME/TopologyEvolution/src/launchers/launcher.py
-export TOPEVO_SIMULATION_DIRECTORY=$HOME/TopologyEvolution/src/roots/
+export TOPEVO_SIMULATION_DIRECTORY=$HOME/TopologyEvolution/src/
 export TOPEVO_LAUNCHING_DIRECTORY=$HOME/TopologyEvolution/src/launchers/
 
 alias ldir='cd $HOME/src/launchers/'

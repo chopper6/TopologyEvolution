@@ -1,12 +1,9 @@
 *.pyc
 *~
 *.log
-data/*
 data/input/*
-data/output/*
 venv
 venv/*
 *.xml
 .idea
 .idea/*
-.idea - Copy/TopologyEvolution.iml
