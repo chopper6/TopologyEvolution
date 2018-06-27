@@ -1,7 +1,7 @@
 *.pyc
 *~
 *.log
-data/input/*
+data/*
 venv
 venv/*
 *.xml
